@@ -25,6 +25,17 @@ VLANs, SVI, Inter-VLAN Routing, OSPFv2, ROAS, DHCP, SSH, NTP, NAT (Overload), St
 
 ---
 
+## Device Access / Passwords
+
+All devices in this lab are configured with passwords for security purposes:  
+- **Username:** `admin`  
+- **Password / Secret:** `1234`  
+- **Enable / Privileged EXEC:** `abcd`  
+
+Please ensure you use these credentials when accessing the devices in Cisco Packet Tracer.
+
+---
+
 ## File Contents
 
 * `topology.jpg` – Network diagram  
@@ -39,4 +50,5 @@ VLANs, SVI, Inter-VLAN Routing, OSPFv2, ROAS, DHCP, SSH, NTP, NAT (Overload), St
 * **File Requirement:** The `.pkt` file must be opened using **Cisco Packet Tracer** software.
 * **ACL Naming:** ACLs are functionally descriptive for clarity (e.g., SSH ACL is named `SSH`).
 * **Purpose:** This lab is for practice and demonstration purposes.
+
 
