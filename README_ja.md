@@ -52,6 +52,22 @@ VLAN、SVI、VLAN間ルーティング、OSPFv2、ROAS、DHCP、SSH、NTP、NAT�
 
 
 
+## デバイスアクセス / パスワード
+
+本ラボの全デバイスはパスワードで保護されています。SSHやログイン時は以下の情報を使用してください：
+
+- **ユーザー名:** `admin`  
+- **パスワード / シークレット:** `1234`  
+- **特権EXEC（enable）:** `abcd`  
+
+Cisco Packet Tracer 上でデバイスにアクセスする際に使用してください。
+
+
+
+---
+
+
+
 ## ファイル構成
 
 
@@ -77,5 +93,6 @@ VLAN、SVI、VLAN間ルーティング、OSPFv2、ROAS、DHCP、SSH、NTP、NAT�
 * **ファイル使用:** `.pkt` ファイルは **Cisco Packet Tracer** で開く必要があります  
 
 * **ACL命名:** ACL は機能に応じて分かりやすく命名されています（例: SSH ACL は `SSH`）  
+
 
 * **目的:** このラボは学習および演習目的です
