@@ -1,0 +1,199 @@
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R1
+!
+!
+!
+enable secret 5 $1$mERr$YcSt/sTClKuDWnwopttUQ.
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+username admin secret 5 $1$mERr$4dpRATIgxQacPVK0CfNV4/
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+ip domain-name test.com
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description To Internet
+ ip address 203.0.113.1 255.255.255.252
+ ip access-group IN_internet_access in
+ ip access-group OUT_internet_access out
+ ip nat outside
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0
+ description To Web Server
+ ip address 10.10.20.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet2/0
+ description To Local Server
+ ip address 10.10.10.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet3/0
+ description To SW1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet3/0.10
+ description To Vlan 10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+ ip helper-address 10.10.10.1
+ ip access-group vlan10 in
+ ip nat inside
+!
+interface GigabitEthernet3/0.99
+ description To Vlan 99
+ encapsulation dot1Q 99
+ ip address 192.168.99.1 255.255.255.248
+ ip access-group vlan99 in
+!
+interface GigabitEthernet4/0
+ description To SW2
+ ip address 192.168.12.1 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet5/0
+ description To SW3
+ ip address 192.168.13.1 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
+ ip nat inside
+ duplex auto
+ speed auto
+!
+router ospf 1
+ log-adjacency-changes
+ passive-interface GigabitEthernet2/0
+ passive-interface GigabitEthernet3/0
+ passive-interface Loopback0
+ passive-interface GigabitEthernet3/0.10
+ passive-interface GigabitEthernet3/0.99
+ network 1.1.1.1 0.0.0.0 area 0
+ network 10.10.10.0 0.0.0.3 area 0
+ network 192.168.10.0 0.0.0.255 area 0
+ network 192.168.13.0 0.0.0.3 area 0
+ network 192.168.12.0 0.0.0.3 area 0
+ network 192.168.99.0 0.0.0.3 area 0
+ default-information originate
+!
+ip nat inside source list PAT interface GigabitEthernet0/0 overload
+ip classless
+ip route 0.0.0.0 0.0.0.0 203.0.113.2 
+!
+ip flow-export version 9
+!
+!
+ip access-list standard PAT
+ permit 192.168.10.0 0.0.0.255
+ permit 192.168.20.0 0.0.0.255
+ permit 192.168.30.0 0.0.0.255
+ deny any
+ip access-list extended vlan10
+ permit udp any eq bootpc any eq bootps
+ permit icmp 192.168.10.0 0.0.0.255 host 192.168.99.3 echo-reply
+ deny ip 192.168.10.0 0.0.0.255 192.168.99.0 0.0.0.7
+ deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+ deny ip 192.168.10.0 0.0.0.255 192.168.30.0 0.0.0.255
+ permit udp 192.168.10.0 0.0.0.255 host 10.10.10.1 eq 123
+ permit udp 192.168.10.0 0.0.0.255 host 10.10.10.1 eq domain
+ permit tcp 192.168.10.0 0.0.0.255 host 10.10.10.1 eq domain
+ permit tcp 192.168.10.0 0.0.0.255 host 10.10.10.1 eq 445
+ deny ip 192.168.10.0 0.0.0.255 10.10.10.0 0.0.0.3
+ permit tcp 192.168.10.0 0.0.0.255 host 10.10.20.1 eq www
+ permit tcp 192.168.10.0 0.0.0.255 host 10.10.20.1 eq 443
+ deny ip 192.168.10.0 0.0.0.255 10.10.20.0 0.0.0.3
+ deny icmp 192.168.10.0 0.0.0.255 192.168.0.0 0.0.255.255 echo
+ deny icmp 192.168.10.0 0.0.0.255 host 1.1.1.1 echo
+ deny icmp 192.168.10.0 0.0.0.255 host 2.2.2.2 echo
+ deny icmp 192.168.10.0 0.0.0.255 host 3.3.3.3 echo
+ permit ip 192.168.10.0 0.0.0.255 any
+ deny ip any any
+ip access-list standard SSH
+ permit host 192.168.99.3
+ deny any
+ip access-list extended vlan99
+ deny icmp 192.168.99.0 0.0.0.7 any echo-reply
+ permit udp 192.168.99.0 0.0.0.7 host 10.10.10.1 eq 123
+ permit ip host 192.168.99.3 any
+ deny ip any any
+ip access-list extended OUT_internet_access
+ permit ip host 203.0.113.1 any
+ permit tcp host 10.10.20.1 eq www any
+ permit tcp host 10.10.20.1 eq 443 any
+ deny ip any any
+ip access-list extended IN_internet_access
+ permit tcp any 203.0.113.0 0.0.0.3 established
+ permit tcp any host 10.10.20.1 eq www
+ permit tcp any host 10.10.20.1 eq 443
+ permit icmp any any echo-reply
+ deny ip any any
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ access-class SSH in
+ exec-timeout 5 0
+ login local
+ transport input ssh
+line vty 5 15
+ access-class SSH in
+ exec-timeout 5 0
+ login local
+ transport input ssh
+!
+!
+ntp authentication-key 1 md5 08701E1D5D 7
+ntp authenticate
+ntp trusted-key 1
+ntp server 10.10.10.1
+ntp master 5
+!
+end
+

@@ -1,0 +1,381 @@
+!
+version 16.3.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname SW2
+!
+!
+enable secret 5 $1$mERr$YcSt/sTClKuDWnwopttUQ.
+!
+!
+!
+!
+!
+!
+no ip cef
+ip routing
+!
+no ipv6 cef
+!
+!
+!
+username admin secret 5 $1$mERr$4dpRATIgxQacPVK0CfNV4/
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+ip domain-name test.com
+!
+!
+vtp mode transparent
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+vlan 20
+ name 2F_Office
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.255
+!
+interface GigabitEthernet1/0/1
+ description To R1
+ no switchport
+ ip address 192.168.12.2 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0/2
+ description To SW3
+ no switchport
+ ip address 192.168.23.1 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0/3
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/4
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/5
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/6
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/7
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/8
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/9
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/10
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/11
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/12
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/13
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/14
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/15
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/16
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/17
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/18
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/19
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/20
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/21
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/22
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/23
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/24
+ description Vlan 20
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security violation restrict 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/1/1
+ description NOT USE
+ shutdown
+!
+interface GigabitEthernet1/1/2
+ description NOT USE
+ shutdown
+!
+interface GigabitEthernet1/1/3
+ description NOT USE
+ shutdown
+!
+interface GigabitEthernet1/1/4
+ description NOT USE
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan20
+ mac-address 0090.0c6d.1301
+ ip address 192.168.20.1 255.255.255.0
+ ip helper-address 10.10.10.1
+ ip access-group vlan20 in
+!
+router ospf 1
+ log-adjacency-changes
+ passive-interface Loopback0
+ passive-interface Vlan20
+ network 2.2.2.2 0.0.0.0 area 0
+ network 192.168.20.0 0.0.0.255 area 0
+ network 192.168.12.0 0.0.0.3 area 0
+ network 192.168.23.0 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+ip access-list extended vlan20
+ permit udp any eq bootpc any eq bootps
+ permit icmp 192.168.20.0 0.0.0.255 host 192.168.99.3 echo-reply
+ deny ip 192.168.20.0 0.0.0.255 192.168.99.0 0.0.0.7
+ deny ip 192.168.20.0 0.0.0.255 192.168.10.0 0.0.0.255
+ deny ip 192.168.20.0 0.0.0.255 192.168.30.0 0.0.0.255
+ permit udp 192.168.20.0 0.0.0.255 host 10.10.10.1 eq 123
+ permit udp 192.168.20.0 0.0.0.255 host 10.10.10.1 eq domain
+ permit tcp 192.168.20.0 0.0.0.255 host 10.10.10.1 eq domain
+ permit tcp 192.168.20.0 0.0.0.255 host 10.10.10.1 eq 445
+ deny ip 192.168.20.0 0.0.0.255 10.10.10.0 0.0.0.3
+ permit tcp 192.168.20.0 0.0.0.255 host 10.10.20.1 eq www
+ permit tcp 192.168.20.0 0.0.0.255 host 10.10.20.1 eq 443
+ deny ip 192.168.20.0 0.0.0.255 10.10.20.0 0.0.0.3
+ deny icmp 192.168.20.0 0.0.0.255 192.168.0.0 0.0.255.255 echo
+ deny icmp 192.168.20.0 0.0.0.255 host 1.1.1.1 echo
+ deny icmp 192.168.20.0 0.0.0.255 host 2.2.2.2 echo
+ deny icmp 192.168.20.0 0.0.0.255 host 3.3.3.3 echo
+ permit ip 192.168.20.0 0.0.0.255 any
+ deny ip any any
+ip access-list standard SSH
+ permit host 192.168.99.3
+ deny any
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ access-class SSH in
+ login local
+ transport input ssh
+line vty 5 15
+ access-class SSH in
+ login local
+ transport input ssh
+!
+!
+!
+ntp authentication-key 1 md5 08701E1D5D 7
+ntp authenticate
+ntp trusted-key 1
+ntp server 10.10.10.1
+!
+end
+
