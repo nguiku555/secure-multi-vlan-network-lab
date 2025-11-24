@@ -38,9 +38,9 @@ Please ensure you use these credentials when accessing the devices in Cisco Pack
 
 ## File Contents
 
-* `topology.jpg` – Network diagram  
-* `lab.pkt` – Packet Tracer project file  
-* `configs/` – Device configuration output
+* [topology.jpg](topology.jpg) – Network diagram  
+* [lab.pkt](lab.pkt) – Packet Tracer project file  
+* [Configs/](Configs/) – Device configuration output
 
 ---
 
@@ -50,5 +50,6 @@ Please ensure you use these credentials when accessing the devices in Cisco Pack
 * **File Requirement:** The `.pkt` file must be opened using **Cisco Packet Tracer** software.
 * **ACL Naming:** ACLs are functionally descriptive for clarity (e.g., SSH ACL is named `SSH`).
 * **Purpose:** This lab is for practice and demonstration purposes.
+
 
 
