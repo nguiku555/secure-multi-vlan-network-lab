@@ -72,11 +72,11 @@ Cisco Packet Tracer 上でデバイスにアクセスする際に使用してく
 
 
 
-* `topology.jpg` – ネットワークトポロジ図  
+* [topology.jpg](topology.jpg) – ネットワークトポロジ図  
 
-* `lab.pkt` – Packet Tracer ラボファイル  
+* [lab.pkt](lab.pkt) – Packet Tracer ラボファイル  
 
-* `configs/` – デバイス設定の出力 (RUN CONFIG)
+* [Configs/](Configs/) – デバイス設定の出力 (RUN CONFIG)
 
 
 
@@ -96,3 +96,4 @@ Cisco Packet Tracer 上でデバイスにアクセスする際に使用してく
 
 
 * **目的:** このラボは学習および演習目的です
+
